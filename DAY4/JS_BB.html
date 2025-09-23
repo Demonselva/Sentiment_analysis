@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header{
+            background-color: aqua;
+            padding: 10px;
+            text-align: center;
+             border: 10px solid red;
+        }
+        header h1{
+            border: 5px solid red;
+            padding: 10px;
+        }
+        .navbar{
+            background-color: rgb(223, 255, 255);
+           
+            display: grid;
+            grid-template-columns: 50% 50%;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+        .navbar .nav-items{
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            line-height: 30px;
+            margin-top: 10px;
+        
+
+        }
+        .nav-items a{
+            padding-right: 20px;
+            text-decoration: none;
+            font-family: 'Segoe UI', Tahoma,;
+        }
+
+        @media (max-width:800px){
+            .navbar{
+                 grid-template-columns: 100%
+            }
+            .navbar .nav-items{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        form{
+            margin-top: 30px;
+        }
+        select{
+            width: 170px;
+            height: 30px;
+        }
+    </style>
+
+    <script>
+        function change_color(){
+            let color=document.forms["form1"]["bgg"].value;
+            document.getElementById('main').style.backgroundColor=color;
+            if (color==='red'){
+                document.getElementById('lab').style.color='blue';
+            }else if(color==='black'){
+                document.getElementById('lab').style.color='white';
+            }
+        }
+    </script>
+</head>
+<body id="main">
+    <header>
+        <div class="border">
+            <h1>JS Basic</h1>
+        </div>
+    </header>
+
+    <div class="navbar">
+        <div class="nav-brand">
+            <h2>js Styles</h2>
+        </div>
+        <div class="nav-items">
+            <div><a href="#">Home</a></div>
+            <div><a href="#">About</a></div>
+            <div><a href="#">Service</a></div>
+            <div><a href="#">Contact</a></div>
+        </div>
+    </div>
+
+    <form name="form1" onchange="change_color()">
+        <label for="bgg" id="lab">Select the background-color of this website: </label>
+        <select name="bgcolor" id="bgg">
+            <option value="red">red</option>
+            <option value="blue">blue</option>
+            <option value="black">black</option>
+            <option value="green">green</option>
+        </select>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body{
+            background-color: lightblue;
+        }
+        header{
+            border: 10px outset rgb(0, 123, 139);
+            padding : 5px;
+           
+        }
+        .inner-border{
+            border: 10px ridge darkblue;
+            padding-left : 20px;
+            padding-right: 20px;
+
+        }
+        header h1{
+            background-color: darkblue;
+            border-radius: 10px;
+            color: aliceblue;
+            text-transform: uppercase;
+            text-align: center ;
+            padding: 30px;
+
+        }
+        .nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+           
+        }
+        .grin{
+            display: grid;
+            grid-template-columns: 60% 40%;
+            padding: 10px 30px 10px;
+            background-color: rgb(226, 226, 226);
+            border-radius: 10px;
+        }
+        .grin .nav-brand{
+            font-weight: 900;
+            font-family: 'Franklin Gothic Medium';
+          
+            color: rgb(255, 0, 0);
+            font-size: 20px;
+            text-transform: uppercase;
+            
+        }
+        .grin .nav div{
+            padding-right: 10px;
+            font-family: 'Courier New';
+            
+        }
+        .grin .nav div a{
+            color: black;
+            text-decoration: none;
+        }
+         .grin .nav div a:hover{
+            text-decoration: underline;
+             text-shadow: 0px 0px 10px navy;
+         }
+         @media (max-width:800px){
+            .grin{
+                grid-template-columns: 100%;
+            }
+            .grin .nav{
+                flex-direction: column;
+            }
+            .grin .nav-brand{
+                color: red;
+                padding: 10px;
+                border: 2px dotted red;
+                text-align: center;
+            }
+             .grin .nav div{
+                line-height: 10px;
+                margin-top: 10px;
+             }
+              .grin .nav div:hover{
+                background-color: blueviolet;
+                padding: 10px;
+              }
+         }
+        
+    </style>
+    
+</head>
+<body>
+    <header>
+        <div class="inner-border">
+        <h1>JS Basics</h1>
+        </div>
+    </header>
+    <hr size="2px" color="darkblue" >
+    
+     <div class="grin"> 
+        <div class="nav-brand">JS Basic</div>
+
+        <div class="nav">
+        <div><a href="#">Home</a></div>
+        <div><a href="#">About</a></div>
+        <div><a href="#">Service</a></div>
+        <div><a href="#">contact</a></div>
+        </div>
+    </div>
+    <hr size="2px" color="darkblue" >
+    <h1 id="name">kumar</h1>
+    <script>
+        document.getElementById("name").innerHTML="selva";
+        document.write("selva");
+    </script>
+   
+    
+</body>
+</html>
