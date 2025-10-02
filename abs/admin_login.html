@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+    }
+
+    .container {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      width: 350px;
+      max-width: 95%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateX(0px); }
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff9966, #ff5e62);
+      color: white;
+      padding: 12px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #ff5e62, #ff9966);
+      transform: scale(1.05);
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    @media(max-width: 768px) {
+        body{
+            padding: 20px;
+        }
+      .container {
+        width: 100%;
+        padding: 25px;
+      }
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Admin Login</h1>
+    <input type="text" id="adminUser" placeholder="Admin Username">
+    <input type="password" id="adminPass" placeholder="Password">
+    <button onclick="adminLogin()">Login</button>
+    <p id="errorMsg" class="error"></p>
+  </div>
+
+  <script>
+    
+    const adminCreds = { username: "admin", password: "admin123" };
+
+    function adminLogin() {
+      let user = document.getElementById("adminUser").value.trim();
+      let pass = document.getElementById("adminPass").value.trim();
+      let errorMsg = document.getElementById("errorMsg");
+
+      if (!user || !pass) {
+        errorMsg.textContent = "Please enter username and password";
+        return;
+      }
+
+      if (user === adminCreds.username && pass === adminCreds.password) {
+        alert("Admin Login Successful!");
+        window.location.href = "admin_dashboard.html"; 
+      } else {
+        errorMsg.textContent = "Invalid Admin Credentials!";
+      }
+    }
+  </script>
+
+</body>
+</html>

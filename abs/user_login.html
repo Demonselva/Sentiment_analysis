@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Login & Register</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 15px;
+      padding: 40px;
+      width: 350px;
+      max-width: 95%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 12px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #42e695, #3bb2b8);
+      transform: scale(1.05);
+    }
+
+    .toggle {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .toggle span {
+      color: #667eea;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .toggle span:hover {
+      color: #764ba2;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+      .container {
+        width: 100%;
+        padding: 25px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+
+   
+  </style>
+</head>
+<body>
+
+  <div class="container" id="formContainer">
+    <div id="loginForm">
+      <h1>Login</h1>
+      <input type="email" placeholder="Email" id="loginemail">
+      <input type="password" placeholder="Password" id="loginPass">
+      <button onclick="login()">Login</button>
+      <div class="toggle">
+        New User? <span onclick="showRegister()">Register</span>
+      </div>
+    </div>
+
+   <div id="registerForm" class="hidden">
+        <h1>Register</h1>
+        <input type="text" id="regName" placeholder="Full Name">
+        <input type="email" id="regEmail" placeholder="Email">
+        <input type="password" id="regPass" placeholder="Password">
+        <input type="password" id="regConfirm" placeholder="Confirm Password">
+        <button onclick="register()">Register</button>
+        <div class="toggle">
+            Already have an account? <span onclick="showLogin()">Login</span>
+        </div>
+    </div>
+
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+
+    function showRegister() {
+      loginForm.classList.add("hidden");
+      registerForm.classList.remove("hidden");
+    }
+
+    function showLogin() {
+      registerForm.classList.add("hidden");
+      loginForm.classList.remove("hidden");
+    }
+   
+    function register() {
+    let name = document.getElementById("regName").value.trim();
+    let email = document.getElementById("regEmail").value.trim();
+    let pass = document.getElementById("regPass").value.trim();
+    let confirm = document.getElementById("regConfirm").value.trim();
+
+    if (!name || !email || !pass || !confirm) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    if (pass !== confirm) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.find(u => u.email === email)) {
+        alert("User already exists!");
+        return;
+    }
+
+    users.push({ name: name, email: email, password: pass });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Registration successful!");
+    showLogin(); 
+}
+
+
+
+    function login() {
+        let user = document.getElementById("loginemail").value;
+        let pass = document.getElementById("loginPass").value;
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        if (user === "admin" && pass === "admin") {
+            localStorage.setItem("loggedIn", "admin");
+            window.location.href = "admin.html";
+            return;
+        }
+
+        let valid = users.find(u => u.username === user && u.password === pass);
+        if (valid) {
+            localStorage.setItem("loggedIn", user);
+            window.location.href = "user_dashboard.html";
+        } else {
+            alert("Invalid login");
+        }
+    }
+
+    
+  
+  </script>
+
+</body>
+</html>

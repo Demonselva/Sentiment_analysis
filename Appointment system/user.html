@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      margin-top: 50px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 450px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    h3 {
+      margin-top: 25px;
+      color: #2980b9;
+    }
+    button {
+      background: #2980b9;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1f5f87;
+      transform: scale(1.05);
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+    input:focus {
+      border: 1px solid #2980b9;
+      outline: none;
+      box-shadow: 0 0 5px rgba(41,128,185,0.5);
+    }
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background: #2980b9;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #2980b9;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    a:hover {
+      color: #1f5f87;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome, User</h2>
+    <button onclick="logout()">Logout</button>
+
+    <h3>Book Appointment</h3>
+    <input type="text" id="service" placeholder="Service"><br>
+    <input type="date" id="date"><br>
+    <input type="time" id="time"><br>
+    <button onclick="bookAppointment()">Book</button>
+
+    <h3>My Appointments</h3>
+    <table id="userAppointments">
+      <tr><th>Service</th><th>Date</th><th>Time</th></tr>
+    </table>
+
+    <a href="user_manage.html">Manage My Appointments</a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
